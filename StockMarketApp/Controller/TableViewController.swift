@@ -8,12 +8,11 @@
 
 import UIKit
 
-
 class TableViewController: UITableViewController {
+    var myModel = StockInfoCollection()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -25,23 +24,31 @@ class TableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return myModel.getStockCount()
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuse", for: indexPath)
 
-        // Configure the cell...
-
+        let row = indexPath.row
+        if let actualCell = cell as? TableViewCell,
+            let theStock = myModel.currentStocks?[row] {
+                // reload
+                actualCell.stockName.text = theStock.getSymbol()
+                self.tableView.reloadRows(
+                    at: [indexPath],
+                    with: .automatic)
+            }
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

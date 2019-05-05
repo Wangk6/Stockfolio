@@ -8,10 +8,10 @@
 
 import Foundation
 
+
 class GlobalConstants {
     // API key for Stocks
     struct APIKey {
-        static let stockAPIKey = "6F66XKFHIBME9UZ4"
+        static let stockAPIKey = "HXR4T4JRACM09DT5"
     }
-    
 }

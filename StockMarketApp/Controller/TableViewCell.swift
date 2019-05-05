@@ -8,8 +8,8 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
 
+class TableViewCell: UITableViewCell {
     @IBOutlet weak var stockName: UILabel!
     @IBOutlet weak var stockLastPrice: UILabel!
     

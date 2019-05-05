@@ -6,39 +6,28 @@
 //  Copyright © 2019 KevinWang. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class StockInfo {
     var symbol: String
     var open: Double
-    var high: Double
-    var low: Double
-    var price: Double
-    var volume: Int
-    var lastTradingDay: Date
-    var prevClosePrice: Double
-    var change: Double
-    var changePercent: Double
+    var urlS: URL
+    
+    
+    func getSymbol()->String{
+        return symbol
+    }
+    func getOpen()->Double{
+        return open
+    }
     
     init(symbol:String,
          open: Double,
-         high: Double,
-         low: Double,
-         price: Double,
-         volume: Int,
-         lastTradingDay: Date,
-         prevClosePrice: Double,
-         change: Double,
-         changePercent: Double) {
+         urlS: URL) {
         self.symbol = symbol
         self.open = open
-        self.high = high
-        self.low = low
-        self.price = price
-        self.volume = volume
-        self.lastTradingDay = lastTradingDay
-        self.prevClosePrice = prevClosePrice
-        self.change = change
-        self.changePercent = changePercent
+        self.urlS = urlS
     }
 }
+
+
