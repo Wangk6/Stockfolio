@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		633259F8227F5E210063ABA3 /* StockInfoSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633259F7227F5E210063ABA3 /* StockInfoSearch.swift */; };
 		63D7BB75227D07FE0057CB96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BB74227D07FE0057CB96 /* AppDelegate.swift */; };
 		63D7BB7A227D07FE0057CB96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63D7BB78227D07FE0057CB96 /* Main.storyboard */; };
 		63D7BB7C227D08030057CB96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D7BB7B227D08030057CB96 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		633259F7227F5E210063ABA3 /* StockInfoSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockInfoSearch.swift; sourceTree = "<group>"; };
 		63D7BB71227D07FD0057CB96 /* StockMarketApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockMarketApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D7BB74227D07FE0057CB96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63D7BB79227D07FE0057CB96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				63D7BBA8227D11830057CB96 /* StockInfo.swift */,
+				633259F7227F5E210063ABA3 /* StockInfoSearch.swift */,
 				63D7BBB6227E3D940057CB96 /* StockInfoCollection.swift */,
 				63D7BBAC227D15C70057CB96 /* GlobalConstants.swift */,
 			);
@@ -295,6 +298,7 @@
 				63D7BBA5227D0F1A0057CB96 /* TableViewController.swift in Sources */,
 				63D7BBA9227D11830057CB96 /* StockInfo.swift in Sources */,
 				63D7BBB5227E3CF60057CB96 /* SwiftyJSON.swift in Sources */,
+				633259F8227F5E210063ABA3 /* StockInfoSearch.swift in Sources */,
 				63D7BBAD227D15C70057CB96 /* GlobalConstants.swift in Sources */,
 				63D7BBBB227E66410057CB96 /* ViewController.swift in Sources */,
 				63D7BBA3227D0AF70057CB96 /* TableViewCell.swift in Sources */,

@@ -8,17 +8,42 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, UISearchBarDelegate {
     var myModel = StockInfoCollection()
+    
+    @IBOutlet var tblView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    var isSearching = false
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myModel.getAdded(addTerm: "AMD")
+        
+        tblView.delegate = self
+        tblView.dataSource = self
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //When user clicks add, add it to getAdded because it is a different URL
+        let symbol = searchBar.text
+        myModel.getAdded(addTerm: symbol!)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+            myModel.getStockSearch(searchTerm: searchText)
+            tableView.reloadData()
+    }
+    
 
     // MARK: - Table view data source
 
@@ -35,7 +60,7 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuse", for: indexPath)
-
+        
         let row = indexPath.row
         if let actualCell = cell as? TableViewCell,
             let theStock = myModel.currentStocks?[row] {

@@ -11,8 +11,8 @@ import UIKit
 class StockInfo {
     var symbol: String
     var open: Double
-    var urlS: URL
-    
+    var price: Double
+    var changepc: Double
     
     func getSymbol()->String{
         return symbol
@@ -21,12 +21,23 @@ class StockInfo {
         return open
     }
     
+    func getPrice()->Double{
+        return price
+    }
+    
+    func getChangePC()->Double{
+        return changepc
+    }
+    
+    
     init(symbol:String,
          open: Double,
-         urlS: URL) {
+        price: Double,
+        changepc: Double) {
         self.symbol = symbol
         self.open = open
-        self.urlS = urlS
+        self.price = price
+        self.changepc = changepc
     }
 }
 

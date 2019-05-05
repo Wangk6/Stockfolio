@@ -10,107 +10,131 @@ import UIKit
 
 class StockInfoCollection {
     var currentStocks: Array<StockInfo>?
+    var searchStock: Array<StockInfoSearch>?
+    init() {
+        currentStocks = Array<StockInfo>()
+        searchStock = Array<StockInfoSearch>()
+    }
     
     func getStockAt(row: Int)->StockInfo? {
         return nil
     }
     
     private enum URLAction {
+        case Added (String)
         case Search(String)
     }
     
     private func generateURL(action: URLAction)->URL {
         print("I'm in the generateURL")
-        //https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo
-        let baseURL = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo"
+        //User Searches with this URL: https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=BA&apikey=demo
+
+        //User uses this API data: https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo
+        let baseURL = "https://www.alphavantage.co/query?"
         var urlComponents = URLComponents(string: baseURL)!
-        //var queryItemArrays=Array<URLQueryItem>()
-        /*switch action {
+        var queryItemArrays=Array<URLQueryItem>()
+        switch action {
+        //After user searches, use the 'Added' API with the global quote
         case .Search(let searchTerm):
             queryItemArrays.append(URLQueryItem(
                 name: "function",
-                value: "GLOBAL_QUOTE"))
+                value: "SYMBOL_SEARCH"))
             queryItemArrays.append(URLQueryItem(
-                name: "symbol",
+                name: "keywords",
                 value: searchTerm))
-        }*/
-        
-        //queryItemArrays.append(URLQueryItem(name: "apikey", value: GlobalConstants.APIKey.stockAPIKey))
-        //urlComponents.queryItems = queryItemArrays
+        case .Added(let addTerm):
+            queryItemArrays.append(URLQueryItem(name: "function", value: "GLOBAL_QUOTE"))
+            queryItemArrays.append(URLQueryItem(name: "symbol", value: addTerm))
+        }
+        queryItemArrays.append(URLQueryItem(name: "apikey", value: GlobalConstants.APIKey.stockAPIKey))
+        urlComponents.queryItems = queryItemArrays
         print(urlComponents.string!)
         return urlComponents.url!
         
     }
     
-    private func getStockData(url: URL, completionHandler: (()->())?) {
-        // 2. retrieve the data
+    //Search for stocks to add
+    private func getStockSearch(url: URL, completionHandler: (()->())?) {
         let session = URLSession(configuration: .ephemeral)
         let task = session.dataTask(with: url) {
-            // completion handler using trailing closure syntax
             (data, response, error) in
-            var localStocks = Array<StockInfo>()
-            // write some code here
-            print("I'm in \(#file) at line \(#line)")
-            if let actualError = error {
-                print("I got an error: \(actualError)")
-            } else if let actualResponse = response,
-                let actualData = data,
-                let parsedData = try? JSON(data: actualData) {
-                print("I got some data: \(actualData)")
-                
-                //print("I got some data: \(parsedData)")
-                let theStocks = parsedData["stocks"]
-                let theRealStocks = theStocks["stock"]
-                for (_, aStock) in theRealStocks{
+            var localStocks = Array<StockInfoSearch>()
+            if let actualError = error {print("I got an error: \(actualError)")}
+            else if let _ = data {
+                let parsedData = try? JSON(data: data!)
+                for (_, aStock) in (parsedData?["bestMatches"])!{
                     print("I got a stock: \(aStock)")
-                    if let theURLS = aStock["urlS"].url,
-                        let theSymbol = aStock["symbol"].string,
-                        let theOpen = aStock["open"].double
+                    if let theSymbol = aStock["1. symbol"].string,
+                        let theName = aStock["2. name"].string
                     {
-                        // 3. parse the data: Convert JSON to a usable structure
-                        // let parsedData = try? JSON(data: ???)
-                        // 4. fill my array of FlickPictures with the data from (3)
-                        var aStockSym = StockInfo(
+                        var aStockSym = StockInfoSearch(
                             symbol: theSymbol,
-                            open: theOpen,
-                            urlS: theURLS
-                        )
+                            name: theName)
                         localStocks.append(aStockSym)
                     }
                 }
-                // print("I got some data: \(theRealPhotos)")
-                self.currentStocks = localStocks
             }
-            print("Done with Closure. \(localStocks.count) rows")
-            // If there is a completionHandler, dispatch it to the main thread
             DispatchQueue.main.async {
                 completionHandler?()
             }
         } // End of Closure for session.dataTask()
-        // the task is created stopped. We need to start it.
-        print("I'm in \(#file) at line \(#line)")
         task.resume()
-        print("I'm in \(#file) at line \(#line)")
-        // conditional unwrap
     }
     
-    // This method will fill currentPhotos with photos related to search term
-    func getWith(searchTerm: String, completionHandler: (()->())? = nil) {
+    //Get stock data that already exists
+    private func getStockData(url: URL, completionHandler: (()->())?) {
+        let session = URLSession(configuration: .ephemeral)
+        let task = session.dataTask(with: url) {
+            (data, response, error) in
+            var localStocks = Array<StockInfo>()
+            if let actualError = error {print("I got an error: \(actualError)")}
+            else if let _ = data {
+                let parsedData = try? JSON(data: data!)
+                for (_, aStock) in parsedData!{
+                    print("I got a stock: \(aStock)")
+                    if let theSymbol = aStock["01. symbol"].string,
+                        let theOpen = aStock["02. open"].double,
+                        let thePrice = aStock["05. price"].double,
+                        let theChange = aStock["10. change percent"].double
+                    {
+                        var aStockSym = StockInfo(
+                            symbol: theSymbol,
+                            open: theOpen,
+                            price: thePrice,
+                            changepc: theChange)
+                        localStocks.append(aStockSym)
+                    }
+                self.currentStocks = localStocks
+            }
+        }
+            DispatchQueue.main.async {
+                completionHandler?()
+            }
+        }
+        task.resume()
+    }
+    
+    
+    //Stocks that had already been added
+    func getAdded(addTerm: String, completionHandler: (()->())? = nil) {
+        // 1. generate a URL to get the data
+        let theURL = generateURL(action: .Added(addTerm))
+        getStockData(url: theURL, completionHandler: completionHandler)
+    }
+    
+    //Search for stocks to add using the search bar
+    func getStockSearch(searchTerm: String, completionHandler: (()->())? = nil) {
         currentStocks = Array<StockInfo>()
         // 1. generate a URL to get the data
         let theURL = generateURL(action: .Search(searchTerm))
-        getStockData(url: theURL, completionHandler: completionHandler)
+        getStockSearch(url: theURL, completionHandler: completionHandler)
     }
+    
     
     func getStockCount()->Int {
         return currentStocks?.count ?? 0
     }
     
-    init(){
-        
-    }
-    deinit {
 
-    }
     // MARK: internal methods
 }

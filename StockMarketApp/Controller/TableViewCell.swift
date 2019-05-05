@@ -10,6 +10,8 @@ import UIKit
 
 
 class TableViewCell: UITableViewCell {
+    var myModel = StockInfoCollection()
+
     @IBOutlet weak var stockName: UILabel!
     @IBOutlet weak var stockLastPrice: UILabel!
     
