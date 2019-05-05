@@ -19,6 +19,7 @@
 		63D7BBAD227D15C70057CB96 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BBAC227D15C70057CB96 /* GlobalConstants.swift */; };
 		63D7BBB5227E3CF60057CB96 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BBB4227E3CF60057CB96 /* SwiftyJSON.swift */; };
 		63D7BBB7227E3D940057CB96 /* StockInfoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BBB6227E3D940057CB96 /* StockInfoCollection.swift */; };
+		63D7BBBB227E66410057CB96 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BBBA227E66410057CB96 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		63D7BBAC227D15C70057CB96 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		63D7BBB4227E3CF60057CB96 /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		63D7BBB6227E3D940057CB96 /* StockInfoCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockInfoCollection.swift; sourceTree = "<group>"; };
+		63D7BBBA227E66410057CB96 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 		63D7BBAF227D1E4E0057CB96 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				63D7BBBA227E66410057CB96 /* ViewController.swift */,
 				63D7BBA4227D0F1A0057CB96 /* TableViewController.swift */,
 				63D7BBA2227D0AF70057CB96 /* TableViewCell.swift */,
 			);
@@ -293,6 +296,7 @@
 				63D7BBA9227D11830057CB96 /* StockInfo.swift in Sources */,
 				63D7BBB5227E3CF60057CB96 /* SwiftyJSON.swift in Sources */,
 				63D7BBAD227D15C70057CB96 /* GlobalConstants.swift in Sources */,
+				63D7BBBB227E66410057CB96 /* ViewController.swift in Sources */,
 				63D7BBA3227D0AF70057CB96 /* TableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
