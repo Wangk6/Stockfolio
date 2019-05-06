@@ -1,16 +1,17 @@
 //
-//  ViewController.swift
+//  StockDetailViewController.swift
 //  StockMarketApp
 //
-//  Created by david on 5/4/19.
+//  Created by david on 5/6/19.
 //  Copyright © 2019 KevinWang. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-    let myStocks = StockInfoCollection()
-
+class StockDetailViewController: UIViewController {
+    
+    //var myStock: StockInfoCollection
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

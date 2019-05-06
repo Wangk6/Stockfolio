@@ -11,13 +11,10 @@ import UIKit
 class StockInfoCollection {
     var currentStocks: Array<StockInfo>?
     var searchStock: Array<StockInfoSearch>?
+    
     init() {
         currentStocks = Array<StockInfo>()
         searchStock = Array<StockInfoSearch>()
-    }
-    
-    func getStockAt(row: Int)->StockInfo? {
-        return nil
     }
     
     private enum URLAction {
@@ -26,6 +23,7 @@ class StockInfoCollection {
     }
     
     private func generateURL(action: URLAction)->URL {
+        searchStock?.removeAll()
         print("I'm in the generateURL")
         //User Searches with this URL: https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=BA&apikey=demo
 
@@ -58,19 +56,18 @@ class StockInfoCollection {
         let session = URLSession(configuration: .ephemeral)
         let task = session.dataTask(with: url) {
             (data, response, error) in
-            var localStocks = Array<StockInfoSearch>()
             if let actualError = error {print("I got an error: \(actualError)")}
             else if let _ = data {
                 let parsedData = try? JSON(data: data!)
                 for (_, aStock) in (parsedData?["bestMatches"])!{
-                    print("I got a stock: \(aStock)")
+                    print("Search Results: \(aStock)")
                     if let theSymbol = aStock["1. symbol"].string,
                         let theName = aStock["2. name"].string
                     {
-                        var aStockSym = StockInfoSearch(
+                        let aStockSym = StockInfoSearch(
                             symbol: theSymbol,
                             name: theName)
-                        localStocks.append(aStockSym)
+                        self.searchStock?.append(aStockSym)
                     }
                 }
             }
@@ -79,6 +76,7 @@ class StockInfoCollection {
             }
         } // End of Closure for session.dataTask()
         task.resume()
+
     }
     
     //Get stock data that already exists
@@ -86,25 +84,24 @@ class StockInfoCollection {
         let session = URLSession(configuration: .ephemeral)
         let task = session.dataTask(with: url) {
             (data, response, error) in
-            var localStocks = Array<StockInfo>()
             if let actualError = error {print("I got an error: \(actualError)")}
             else if let _ = data {
                 let parsedData = try? JSON(data: data!)
                 for (_, aStock) in parsedData!{
-                    print("I got a stock: \(aStock)")
+                    print("Adding stock: \(aStock)")
                     if let theSymbol = aStock["01. symbol"].string,
-                        let theOpen = aStock["02. open"].double,
-                        let thePrice = aStock["05. price"].double,
-                        let theChange = aStock["10. change percent"].double
+                        let theOpen = aStock["02. open"].string,
+                        let thePrice = aStock["05. price"].string,
+                        let theChange = aStock["10. change percent"].string,
+                        let theChangePr = aStock["09. change"].string
                     {
-                        var aStockSym = StockInfo(
+                        let aStockSym = StockInfo(
                             symbol: theSymbol,
                             open: theOpen,
                             price: thePrice,
-                            changepc: theChange)
-                        localStocks.append(aStockSym)
+                            changepc: theChange, change: theChangePr)
+                        self.currentStocks?.append(aStockSym)
                     }
-                self.currentStocks = localStocks
             }
         }
             DispatchQueue.main.async {
@@ -124,15 +121,16 @@ class StockInfoCollection {
     
     //Search for stocks to add using the search bar
     func getStockSearch(searchTerm: String, completionHandler: (()->())? = nil) {
-        currentStocks = Array<StockInfo>()
         // 1. generate a URL to get the data
         let theURL = generateURL(action: .Search(searchTerm))
         getStockSearch(url: theURL, completionHandler: completionHandler)
     }
     
-    
+    func getSearchCount()->Int {
+        return searchStock!.count
+    }
     func getStockCount()->Int {
-        return currentStocks?.count ?? 0
+        return currentStocks!.count
     }
     
 

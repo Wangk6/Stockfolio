@@ -10,34 +10,48 @@ import UIKit
 
 class StockInfo {
     var symbol: String
-    var open: Double
-    var price: Double
-    var changepc: Double
-    
+    var open: String
+    var price: String
+    var changepc: String
+    var change: String
+
     func getSymbol()->String{
-        return symbol
+        print("Returning Symbol\(symbol)")
+        return "$" + symbol
     }
-    func getOpen()->Double{
-        return open
+    func getOpen()->String{
+        let setOpen = Double(open)
+        
+        return String(format: "$%.02f", setOpen!)    }
+    
+    func getPrice()->String{
+        print("Returning Price\(price)")
+        let setPrice = Double(price)
+        
+        return String(format: "$%.02f", setPrice!)
     }
     
-    func getPrice()->Double{
-        return price
+    func getChangePC()->String{
+        var pieces = Double(changepc.dropLast())
+        
+        return String(format: "%.03f%%", pieces!)
     }
-    
-    func getChangePC()->Double{
-        return changepc
-    }
-    
+ 
+    func getChange()->String{
+        let setChange = Double(change)
+        
+        return String(format: "$%.03f", setChange!)    }
     
     init(symbol:String,
-         open: Double,
-        price: Double,
-        changepc: Double) {
+         open: String,
+        price: String,
+        changepc: String,
+        change: String) {
         self.symbol = symbol
         self.open = open
         self.price = price
         self.changepc = changepc
+        self.change = change
     }
 }
 

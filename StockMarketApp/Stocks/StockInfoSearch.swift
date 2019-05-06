@@ -6,13 +6,15 @@
 //  Copyright © 2019 KevinWang. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class StockInfoSearch{
     var symbol:String
     var name: String
 
-    
+func getSymbol()->String{
+        return "$"+symbol
+}
 func getName()->String{
     return name
 }

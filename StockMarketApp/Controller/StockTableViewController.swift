@@ -8,10 +8,9 @@
 
 import UIKit
 
-class TableViewController: UITableViewController, UISearchBarDelegate {
+class StockTableViewController: UITableViewController, UISearchBarDelegate {
     var myModel = StockInfoCollection()
     
-    @IBOutlet var tblView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     var isSearching = false
@@ -19,29 +18,25 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        myModel.getAdded(addTerm: "AMD")
-        
-        tblView.delegate = self
-        tblView.dataSource = self
+        self.tableView?.rowHeight = 90.0
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
         
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        //self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //When user clicks add, add it to getAdded because it is a different URL
         let symbol = searchBar.text
         myModel.getAdded(addTerm: symbol!)
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
-            myModel.getStockSearch(searchTerm: searchText)
-            tableView.reloadData()
+            myModel.getStockSearch(searchTerm: searchText, completionHandler: self.tableView.reloadData)
     }
     
 
@@ -54,18 +49,20 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return myModel.getStockCount()
+        print("My stock count\(myModel.getStockCount())")
+        return (myModel.currentStocks?.count)!
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuse", for: indexPath)
-        
         let row = indexPath.row
-        if let actualCell = cell as? TableViewCell,
-            let theStock = myModel.currentStocks?[row] {
+        if let actualCell = cell as? StockTableViewCell,
+            let theStock = myModel.currentStocks?[row]{
                 // reload
                 actualCell.stockName.text = theStock.getSymbol()
+                actualCell.stockLastPrice.text = theStock.getPrice()
+                print("Adding cell")
                 self.tableView.reloadRows(
                     at: [indexPath],
                     with: .automatic)
@@ -83,17 +80,16 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            myModel.currentStocks?.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
