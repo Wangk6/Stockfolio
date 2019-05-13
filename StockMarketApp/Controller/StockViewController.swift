@@ -7,33 +7,61 @@
 //
 
 import UIKit
+import CoreData
 
 class StockViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var searchStocks = StockInfoCollection()
     var myModel = StockInfoCollection()
+    var dataNum = 0
     let searchController = UISearchController(searchResultsController: nil)
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleLabel1: UILabel!
     @IBOutlet weak var titleLabel2: UILabel!
     @IBOutlet weak var titleLabel3: UILabel!
     
     var searchBar: UISearchBar!
-    var searchAddStock = false
+    var searchAddStock = true
+    var symbolSave: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Coredata
+        
+        dataNum = getData()
+        for symbol in symbolSave{
+            myModel.getAdded(addTerm: symbol, completionHandler: self.tableView.reloadData)
+        }
         self.tableView?.rowHeight = 80.0
         searchController.searchResultsUpdater = self
+        
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.backgroundColor = UIColor.gray
+        searchController.searchBar.tintColor = UIColor.gray
+        searchController.searchBar.barStyle = .black
+        self.tableView.backgroundColor = UIColor.clear
         searchController.searchBar.placeholder = "Search Stocks"
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
+        
         definesPresentationContext = true
+        let editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(toggleEditing)) // create a bat button
+        navigationItem.rightBarButtonItem = editButton // assign button
+        self.tableView.reloadData()
 
-        // Do any additional setup after loading the view.
     }
     
+    @IBAction func refreshBtn(_ sender: Any) {
+        if(myModel.getStockCount() < dataNum){
+            for symbol in symbolSave{
+                myModel.getAdded(addTerm: symbol, completionHandler: self.tableView.reloadData)
+            }
+        }
+    }
+    @objc private func toggleEditing() {
+        tableView.setEditing(!tableView.isEditing, animated: true) // Set opposite value of current editing status
+        navigationItem.rightBarButtonItem?.title = tableView.isEditing ? "Done" : "Edit" // Set title depending on the editing status
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuse", for: indexPath)
         let row = indexPath.row
@@ -41,7 +69,7 @@ class StockViewController: UIViewController, UITableViewDataSource, UITableViewD
             {
             // reload
             
-            if isFiltering(){
+            if isSearching(){
                 print("I'm in cellForRow filtering")
                 actualCell.stockName.text = ""
                 actualCell.stockLastPrice.text = ""
@@ -55,9 +83,7 @@ class StockViewController: UIViewController, UITableViewDataSource, UITableViewD
                 actualCell.stockFullName.adjustsFontSizeToFitWidth.toggle()
                 actualCell.stockSymbol.text = search?.symbol
                 print("Adding search cell")
-                self.tableView.reloadRows(
-                    at: [indexPath],
-                    with: .automatic)
+                searchAddStock = false
             }else{
                 print("I'm in cellForRow not filtering")
                 let theStock = myModel.currentStocks?[row]
@@ -65,32 +91,34 @@ class StockViewController: UIViewController, UITableViewDataSource, UITableViewD
                 actualCell.stockFullName.text = ""
                 actualCell.stockFullName.adjustsFontSizeToFitWidth.toggle()
                 actualCell.stockSymbol.text = ""
-                //Add stock 
+                //Add stock
                 actualCell.stockName.text = theStock?.getSymbol()
                 actualCell.stockLastPrice.text = theStock?.getPrice()
                 actualCell.changeP.text = theStock?.getChangePC()
                 actualCell.change.text = theStock?.getChange()
+                if theStock?.change.first == "-"{
+                    actualCell.changeP.textColor = UIColor.red
+                    actualCell.change.textColor = UIColor.red
+                } else {
+                    actualCell.change.textColor = UIColor.green
+                    actualCell.changeP.textColor = UIColor.green
+                }
+                searchAddStock = true
                 print("Adding actual cell")
-                self.tableView.reloadRows(
-                    at: [indexPath],
-                    with: .automatic)
+
             }
         }
         if(searchAddStock == true){
-        self.tableView.reloadData()
         searchAddStock = false
         return cell
-        } else {return cell}
+        } else {            self.tableView.reloadRows(
+            at: [indexPath],
+            with: .automatic); return cell}
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("My stock count\(myModel.getStockCount())")
-        print("My search count\(searchStocks.searchStock())")
-
-        if isFiltering() {
-            return (searchStocks.searchStock?.count)!
-        }
-        
-        return (myModel.currentStocks?.count)!
+        if isSearching() {return (searchStocks.searchStock?.count)!}
+            else {return (myModel.currentStocks?.count)!}
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -101,36 +129,95 @@ class StockViewController: UIViewController, UITableViewDataSource, UITableViewD
             let search = (searchStocks.searchStock?[indexPath.row])
             let symbol = search?.getSymbol()
             let removeDollar = symbol?.dropFirst()
-            print ("******\(removeDollar)")
-            myModel.getAdded(addTerm: String(removeDollar!))
-            searchController.isActive = false
-            searchAddStock = true
+            addStock(symbol: String(removeDollar!))
         }
-
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("search button click")
+    func addStock(symbol: String){
+        //Save the data
+        let context = (UIApplication.shared.delegate as!AppDelegate).persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Stocks", in: context)
+        let newEntity = NSManagedObject(entity: entity!, insertInto: context)
+        self.symbolSave.append(symbol)
+        newEntity.setValue(symbol, forKey: "symbol")
+        do {
+            try context.save()
+            print("Saved")
+        } catch {
+            print("Failed saving")
+        }
+        //Add
+        searchAddStock = true
+        searchController.isActive = false
+        myModel.getAdded(addTerm: String(symbol)){
+            self.tableView.reloadData()
+        }
     }
+    func getData()->Int{
+        
+        let context = (UIApplication.shared.delegate as!AppDelegate).persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Stocks")
+        request.returnsObjectsAsFaults = false
+        print("IM GETTING DATA")
+        var dataCount = 0
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject]
+            {
+                dataCount = dataCount + 1
+                self.symbolSave.append(data.value(forKey: "symbol") as! String)
+            }
+        } catch  {
+            print ("Failed getData")
+        }
+        return dataCount
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        print ("In shouldPerform")
+        if searchAddStock == false {
+            return false
+        } else {
+            return true
+            
+        }
+    }
+
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+        if editingStyle == .delete && searchBarIsEmpty() == true {
             // Delete the row from the data source
-            myModel.currentStocks?.remove(at: indexPath.row)
+            let myStock = self.myModel.currentStocks?.remove(at: indexPath.row)
+            _ = myStock?.getSymbol().dropFirst()
+            deleteData()
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func deleteData(){
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Stocks")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch {
+            print ("There was an error")
+        }
     }
-    */
-    func isFiltering() -> Bool {
-        print("I'm in isFiltering")
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let dvc = segue.destination as? StockDetailViewController{
+            dvc.myStock = myModel.currentStocks![(self.tableView.indexPathForSelectedRow?.row)!]
+        }
+    }
+ 
+    func isSearching() -> Bool {
+        print("I'm in isSearching")
         titleLabel1.text = "Symbol"
         titleLabel2.text = "Last"
         titleLabel3.text = "Change"
@@ -139,28 +226,34 @@ class StockViewController: UIViewController, UITableViewDataSource, UITableViewD
     func searchBarIsEmpty() -> Bool {
         // Returns true if the text is empty or nil
         print("I'm in searchBarIsEmpty")
+        searchAddStock = true
         return searchController.searchBar.text?.isEmpty ?? true
     }
 
-    func reloadTableView(){
-        self.tableView.reloadData()
-    }
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+    
+    func searchContentForSearchText(_ searchText: String, scope: String = "All") {
         print ("I'm in filterContent")
+
         if(searchBarIsEmpty() == false){
-        return searchStocks.getStockSearch(searchTerm: searchText, completionHandler: self.tableView.reloadData)
-        }else{
-            self.tableView.reloadData()
+            return searchStocks.getSearch(searchTerm: searchText, completionHandler: self.tableView.reloadData)
         }
     }
-
 }
+
+
 
 
 extension StockViewController: UISearchResultsUpdating {
     // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
+        searchContentForSearchText(searchController.searchBar.text!)
         print ("I'm in updateSearchResults")
+        
+        //Refreh the table with loaded data and not searchbar data
+        if !searchController.isActive {
+            print("Cancelled")
+            self.tableView.reloadData()
+        }
     }
 }
+

@@ -10,6 +10,11 @@
 		633259F8227F5E210063ABA3 /* StockInfoSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633259F7227F5E210063ABA3 /* StockInfoSearch.swift */; };
 		6380F027227FE91B0077DF15 /* StockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6380F026227FE91B0077DF15 /* StockViewController.swift */; };
 		6380F02B228030300077DF15 /* StockDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6380F02A228030300077DF15 /* StockDetailViewController.swift */; };
+		6380F02D2280B6650077DF15 /* StockInfoDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6380F02C2280B6650077DF15 /* StockInfoDetailed.swift */; };
+		6389DBE12283D87B00B907B9 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6389DBDF2283D87B00B907B9 /* CoreData.xcdatamodeld */; };
+		63B98B222289F0A400BE2308 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png in Resources */ = {isa = PBXBuildFile; fileRef = 63B98B212289F0A400BE2308 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png */; };
+		63B98B2C2289F57300BE2308 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B98B292289F55800BE2308 /* Charts.framework */; };
+		63B98B2D2289F57300BE2308 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63B98B292289F55800BE2308 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63D7BB75227D07FE0057CB96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BB74227D07FE0057CB96 /* AppDelegate.swift */; };
 		63D7BB7A227D07FE0057CB96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63D7BB78227D07FE0057CB96 /* Main.storyboard */; };
 		63D7BB7C227D08030057CB96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D7BB7B227D08030057CB96 /* Assets.xcassets */; };
@@ -17,7 +22,6 @@
 		63D7BB8A227D08030057CB96 /* StockMarketAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BB89227D08030057CB96 /* StockMarketAppTests.swift */; };
 		63D7BB95227D08030057CB96 /* StockMarketAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BB94227D08030057CB96 /* StockMarketAppUITests.swift */; };
 		63D7BBA3227D0AF70057CB96 /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BBA2227D0AF70057CB96 /* StockTableViewCell.swift */; };
-		63D7BBA5227D0F1A0057CB96 /* StockTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BBA4227D0F1A0057CB96 /* StockTableViewController.swift */; };
 		63D7BBA9227D11830057CB96 /* StockInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BBA8227D11830057CB96 /* StockInfo.swift */; };
 		63D7BBAD227D15C70057CB96 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BBAC227D15C70057CB96 /* GlobalConstants.swift */; };
 		63D7BBB5227E3CF60057CB96 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BBB4227E3CF60057CB96 /* SwiftyJSON.swift */; };
@@ -25,6 +29,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		63B98B282289F55800BE2308 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63B98B232289F55800BE2308 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65AD9E95D9ED4DC0BD73A743;
+			remoteInfo = Charts;
+		};
+		63B98B2A2289F55800BE2308 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63B98B232289F55800BE2308 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
+			remoteInfo = ChartsTests;
+		};
+		63B98B2E2289F57300BE2308 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63B98B232289F55800BE2308 /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = A58A4ED274A941CA248EA921;
+			remoteInfo = Charts;
+		};
 		63D7BB86227D08030057CB96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 63D7BB69227D07FD0057CB96 /* Project object */;
@@ -41,10 +66,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		63B98B302289F57300BE2308 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				63B98B2D2289F57300BE2308 /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		633259F7227F5E210063ABA3 /* StockInfoSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockInfoSearch.swift; sourceTree = "<group>"; };
 		6380F026227FE91B0077DF15 /* StockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewController.swift; sourceTree = "<group>"; };
 		6380F02A228030300077DF15 /* StockDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailViewController.swift; sourceTree = "<group>"; };
+		6380F02C2280B6650077DF15 /* StockInfoDetailed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockInfoDetailed.swift; sourceTree = "<group>"; };
+		6389DBE02283D87B00B907B9 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
+		63B98B212289F0A400BE2308 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png"; path = "../../../Downloads/StockMarketApp/StockMarketApp/kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png"; sourceTree = "<group>"; };
+		63B98B232289F55800BE2308 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "Charts-master/Charts.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		63D7BB71227D07FD0057CB96 /* StockMarketApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockMarketApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D7BB74227D07FE0057CB96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63D7BB79227D07FE0057CB96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,7 +101,6 @@
 		63D7BB94227D08030057CB96 /* StockMarketAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMarketAppUITests.swift; sourceTree = "<group>"; };
 		63D7BB96227D08040057CB96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63D7BBA2227D0AF70057CB96 /* StockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableViewCell.swift; sourceTree = "<group>"; };
-		63D7BBA4227D0F1A0057CB96 /* StockTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableViewController.swift; sourceTree = "<group>"; };
 		63D7BBA8227D11830057CB96 /* StockInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockInfo.swift; sourceTree = "<group>"; };
 		63D7BBAC227D15C70057CB96 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		63D7BBB4227E3CF60057CB96 /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -70,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63B98B2C2289F57300BE2308 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +133,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63B98B242289F55800BE2308 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63B98B292289F55800BE2308 /* Charts.framework */,
+				63B98B2B2289F55800BE2308 /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		63D7BB68227D07FD0057CB96 = {
 			isa = PBXGroup;
 			children = (
@@ -114,10 +166,13 @@
 			isa = PBXGroup;
 			children = (
 				63D7BB78227D07FE0057CB96 /* Main.storyboard */,
+				63B98B212289F0A400BE2308 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png */,
 				63D7BB74227D07FE0057CB96 /* AppDelegate.swift */,
 				63D7BB7B227D08030057CB96 /* Assets.xcassets */,
 				63D7BB7D227D08030057CB96 /* LaunchScreen.storyboard */,
 				63D7BB80227D08030057CB96 /* Info.plist */,
+				6389DBDF2283D87B00B907B9 /* CoreData.xcdatamodeld */,
+				63B98B232289F55800BE2308 /* Charts.xcodeproj */,
 				63D7BBB4227E3CF60057CB96 /* SwiftyJSON.swift */,
 				63D7BBAF227D1E4E0057CB96 /* Controller */,
 				63D7BBAE227D1E230057CB96 /* Stocks */,
@@ -148,6 +203,7 @@
 			children = (
 				63D7BBA8227D11830057CB96 /* StockInfo.swift */,
 				633259F7227F5E210063ABA3 /* StockInfoSearch.swift */,
+				6380F02C2280B6650077DF15 /* StockInfoDetailed.swift */,
 				63D7BBB6227E3D940057CB96 /* StockInfoCollection.swift */,
 				63D7BBAC227D15C70057CB96 /* GlobalConstants.swift */,
 			);
@@ -157,10 +213,9 @@
 		63D7BBAF227D1E4E0057CB96 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				63D7BBA4227D0F1A0057CB96 /* StockTableViewController.swift */,
 				6380F026227FE91B0077DF15 /* StockViewController.swift */,
-				63D7BBA2227D0AF70057CB96 /* StockTableViewCell.swift */,
 				6380F02A228030300077DF15 /* StockDetailViewController.swift */,
+				63D7BBA2227D0AF70057CB96 /* StockTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -175,10 +230,12 @@
 				63D7BB6D227D07FD0057CB96 /* Sources */,
 				63D7BB6E227D07FD0057CB96 /* Frameworks */,
 				63D7BB6F227D07FD0057CB96 /* Resources */,
+				63B98B302289F57300BE2308 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				63B98B2F2289F57300BE2308 /* PBXTargetDependency */,
 			);
 			name = StockMarketApp;
 			productName = StockMarketApp;
@@ -255,6 +312,12 @@
 			mainGroup = 63D7BB68227D07FD0057CB96;
 			productRefGroup = 63D7BB72227D07FD0057CB96 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 63B98B242289F55800BE2308 /* Products */;
+					ProjectRef = 63B98B232289F55800BE2308 /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				63D7BB70227D07FD0057CB96 /* StockMarketApp */,
@@ -264,6 +327,23 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		63B98B292289F55800BE2308 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 63B98B282289F55800BE2308 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63B98B2B2289F55800BE2308 /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 63B98B2A2289F55800BE2308 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		63D7BB6F227D07FD0057CB96 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
@@ -271,6 +351,7 @@
 			files = (
 				63D7BB7F227D08030057CB96 /* LaunchScreen.storyboard in Resources */,
 				63D7BB7C227D08030057CB96 /* Assets.xcassets in Resources */,
+				63B98B222289F0A400BE2308 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png in Resources */,
 				63D7BB7A227D07FE0057CB96 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,8 +380,9 @@
 				6380F02B228030300077DF15 /* StockDetailViewController.swift in Sources */,
 				63D7BBB7227E3D940057CB96 /* StockInfoCollection.swift in Sources */,
 				6380F027227FE91B0077DF15 /* StockViewController.swift in Sources */,
+				6389DBE12283D87B00B907B9 /* CoreData.xcdatamodeld in Sources */,
 				63D7BB75227D07FE0057CB96 /* AppDelegate.swift in Sources */,
-				63D7BBA5227D0F1A0057CB96 /* StockTableViewController.swift in Sources */,
+				6380F02D2280B6650077DF15 /* StockInfoDetailed.swift in Sources */,
 				63D7BBA9227D11830057CB96 /* StockInfo.swift in Sources */,
 				63D7BBB5227E3CF60057CB96 /* SwiftyJSON.swift in Sources */,
 				633259F8227F5E210063ABA3 /* StockInfoSearch.swift in Sources */,
@@ -328,6 +410,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		63B98B2F2289F57300BE2308 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = 63B98B2E2289F57300BE2308 /* PBXContainerItemProxy */;
+		};
 		63D7BB87227D08030057CB96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 63D7BB70227D07FD0057CB96 /* StockMarketApp */;
@@ -479,6 +566,7 @@
 		63D7BB9A227D08040057CB96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = StockMarketApp/Info.plist;
@@ -496,6 +584,7 @@
 		63D7BB9B227D08040057CB96 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = StockMarketApp/Info.plist;
@@ -628,6 +717,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6389DBDF2283D87B00B907B9 /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6389DBE02283D87B00B907B9 /* CoreData.xcdatamodel */,
+			);
+			currentVersion = 6389DBE02283D87B00B907B9 /* CoreData.xcdatamodel */;
+			name = CoreData.xcdatamodeld;
+			path = ../CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 63D7BB69227D07FD0057CB96 /* Project object */;
 }
