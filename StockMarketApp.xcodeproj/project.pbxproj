@@ -12,7 +12,6 @@
 		6380F02B228030300077DF15 /* StockDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6380F02A228030300077DF15 /* StockDetailViewController.swift */; };
 		6380F02D2280B6650077DF15 /* StockInfoDetailed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6380F02C2280B6650077DF15 /* StockInfoDetailed.swift */; };
 		6389DBE12283D87B00B907B9 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6389DBDF2283D87B00B907B9 /* CoreData.xcdatamodeld */; };
-		63B98B222289F0A400BE2308 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png in Resources */ = {isa = PBXBuildFile; fileRef = 63B98B212289F0A400BE2308 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png */; };
 		63B98B2C2289F57300BE2308 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B98B292289F55800BE2308 /* Charts.framework */; };
 		63B98B2D2289F57300BE2308 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63B98B292289F55800BE2308 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63D7BB75227D07FE0057CB96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BB74227D07FE0057CB96 /* AppDelegate.swift */; };
@@ -26,6 +25,7 @@
 		63D7BBAD227D15C70057CB96 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BBAC227D15C70057CB96 /* GlobalConstants.swift */; };
 		63D7BBB5227E3CF60057CB96 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BBB4227E3CF60057CB96 /* SwiftyJSON.swift */; };
 		63D7BBB7227E3D940057CB96 /* StockInfoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7BBB6227E3D940057CB96 /* StockInfoCollection.swift */; };
+		63DFCE5A228A1268008B86C4 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DFCE58228A1268008B86C4 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +86,6 @@
 		6380F02A228030300077DF15 /* StockDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailViewController.swift; sourceTree = "<group>"; };
 		6380F02C2280B6650077DF15 /* StockInfoDetailed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockInfoDetailed.swift; sourceTree = "<group>"; };
 		6389DBE02283D87B00B907B9 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
-		63B98B212289F0A400BE2308 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png"; path = "../../../Downloads/StockMarketApp/StockMarketApp/kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png"; sourceTree = "<group>"; };
 		63B98B232289F55800BE2308 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "Charts-master/Charts.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		63D7BB71227D07FD0057CB96 /* StockMarketApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StockMarketApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D7BB74227D07FE0057CB96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +104,7 @@
 		63D7BBAC227D15C70057CB96 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		63D7BBB4227E3CF60057CB96 /* SwiftyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		63D7BBB6227E3D940057CB96 /* StockInfoCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockInfoCollection.swift; sourceTree = "<group>"; };
+		63DFCE58228A1268008B86C4 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,7 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				63D7BB78227D07FE0057CB96 /* Main.storyboard */,
-				63B98B212289F0A400BE2308 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png */,
+				63DFCE58228A1268008B86C4 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png */,
 				63D7BB74227D07FE0057CB96 /* AppDelegate.swift */,
 				63D7BB7B227D08030057CB96 /* Assets.xcassets */,
 				63D7BB7D227D08030057CB96 /* LaunchScreen.storyboard */,
@@ -351,7 +351,7 @@
 			files = (
 				63D7BB7F227D08030057CB96 /* LaunchScreen.storyboard in Resources */,
 				63D7BB7C227D08030057CB96 /* Assets.xcassets in Resources */,
-				63B98B222289F0A400BE2308 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png in Resources */,
+				63DFCE5A228A1268008B86C4 /* kisspng-united-states-win-the-white-house-hotel-business-c-refresh-icon-5b0ecd3859cd92.0718737115276966963679.png in Resources */,
 				63D7BB7A227D07FE0057CB96 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

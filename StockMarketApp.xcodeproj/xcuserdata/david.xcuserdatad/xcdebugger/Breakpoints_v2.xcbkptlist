@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StockMarketApp/Controller/TableViewCell.swift"
+            timestampString = "578789644.639838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "TableViewCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StockMarketApp.TableViewCell.stockName.getter : weak Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "StockMarketApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/david/Desktop/StockMarketApp/StockMarketApp/Controller/TableViewCell.swift"
+                  timestampString = "578789243.048328"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "86">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StockMarketApp.TableViewCell.stockName.setter : weak Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "StockMarketApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/david/Desktop/StockMarketApp/StockMarketApp/Controller/TableViewCell.swift"
+                  timestampString = "578789243.05151"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "106">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StockMarketApp.TableViewCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; StockMarketApp.TableViewCell"
+                  moduleName = "StockMarketApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/david/Desktop/StockMarketApp/StockMarketApp/Controller/TableViewCell.swift"
+                  timestampString = "578789243.054432"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "211">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StockMarketApp.TableViewCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;StockMarketApp.TableViewCell&gt;"
+                  moduleName = "StockMarketApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/david/Desktop/StockMarketApp/StockMarketApp/Controller/TableViewCell.swift"
+                  timestampString = "578789243.0569839"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "177">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StockMarketApp/Stocks/StockInfoCollection.swift"
+            timestampString = "579466848.0399669"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "getStockData(url:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
